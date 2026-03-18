@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/CustomButton.dart';
+import 'RegistroPage.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -31,7 +32,10 @@ class WelcomePage extends StatelessWidget {
               CustomButton(
                 text: 'Começar',
                 onPressed: () {
-                  print("Indo para o cadastro...");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RegistroPage())
+                  );
                 },
               ),
             ],
