@@ -2,63 +2,69 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../widgets/CustomButton.dart';
+import 'VerificacaoCodigoPage.dart';
 
 class RegistroPage extends StatelessWidget {
   const RegistroPage({super.key});
 
-  
   @override
   Widget build(BuildContext context) {
-    
     var maskCelular = MaskTextInputFormatter(mask: '(##) #####-####', filter: {"#": RegExp(r'[0-9]')});
     var maskRG = MaskTextInputFormatter(mask: '##.###.###-#', filter: {"#": RegExp(r'[0-9]')});
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  CircleAvatar(radius: 6, backgroundColor: Colors.pink),
-                  Expanded(child: Divider(color: Colors.grey)),
-                  CircleAvatar(radius: 6, backgroundColor: Colors.grey),
-                  Expanded(child: Divider(color: Colors.grey)),
-                  CircleAvatar(radius: 6, backgroundColor: Colors.grey),
-                  Expanded(child: Divider(color: Colors.grey)),
-                  CircleAvatar(radius: 6, backgroundColor: Colors.grey),
-                ],
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              padding: const EdgeInsets.all(24.0),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight - 48), 
+                child: IntrinsicHeight( 
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const CircleAvatar(radius: 6, backgroundColor: Colors.pink),
+                          const Expanded(child: Divider(color: Colors.grey, thickness: 1)),
+                          CircleAvatar(radius: 6, backgroundColor: Colors.grey[300]),
+                          const Expanded(child: Divider(color: Colors.grey, thickness: 1)),
+                          CircleAvatar(radius: 6, backgroundColor: Colors.grey[300]),
+                          const Expanded(child: Divider(color: Colors.grey, thickness: 1)),
+                          CircleAvatar(radius: 6, backgroundColor: Colors.grey[300]),
+                        ],
+                      ),
+                      const SizedBox(height: 32),
+
+                      _buildTextField('Nome Completo'),
+                      const SizedBox(height: 20),
+                      _buildTextField('E-mail'),
+                      const SizedBox(height: 20),
+                      _buildTextField('Celular', keyboardType: TextInputType.phone, inputFormatters: [maskCelular]),
+                      const SizedBox(height: 20),
+                      _buildTextField('RG', keyboardType: TextInputType.number, inputFormatters: [maskRG]),
+                      const SizedBox(height: 20),
+                      _buildTextField('Senha', isPassword: true),
+                      
+                      const Spacer(), 
+
+                      CustomButton(
+                        text: 'Continuar',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const VerificacaoCodigoPage())
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              SizedBox(height: 32),
-
-              
-              _buildTextField('Nome Completo'),
-              const SizedBox(height: 20),
-
-              _buildTextField('E-mail'),
-              const SizedBox(height: 20),
-
-              _buildTextField('Celular', keyboardType: TextInputType.phone,inputFormatters: [maskCelular],),
-              const SizedBox(height: 20),
-
-              _buildTextField('RG', keyboardType: TextInputType.number, inputFormatters: [maskRG],),
-              const SizedBox(height: 20),
-
-              _buildTextField('Senha', isPassword: true,),
-              const SizedBox(height: 20),
-
-              const Spacer(),
-
-              CustomButton(
-                text: 'Continuar',
-                onPressed: () {
-                  print("Indo para o cadastro...");
-                },
-              ),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );
