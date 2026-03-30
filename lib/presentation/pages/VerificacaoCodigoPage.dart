@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:prototipo_app_v1/presentation/pages/PermissaoLocalizacaoPage.dart';
 import '../widgets/CustomButton.dart';
 
 class VerificacaoCodigoPage extends StatelessWidget {
@@ -7,13 +8,11 @@ class VerificacaoCodigoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Cor exata aproximada do protótipo
     const primaryPink = Color(0xFFFF3B5C);
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        // O SingleChildScrollView resolve o erro de listras amarelas (Overflow)
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 24.0),
           child: Column(
@@ -43,7 +42,6 @@ class VerificacaoCodigoPage extends StatelessWidget {
               ),
               const SizedBox(height: 60),
 
-              // 3. Textos Auxiliares
               Text(
                 'Este código nos ajuda a manter a sua conta ainda mais protegida.',
                 style: TextStyle(color: Colors.grey[700], fontSize: 14),
@@ -59,7 +57,6 @@ class VerificacaoCodigoPage extends StatelessWidget {
               ),
               const SizedBox(height: 100),
 
-              // 4. Pin Code Field (Ajustado para o estilo "Box Clean")
               PinCodeTextField(
                 appContext: context,
                 length: 4,
@@ -83,7 +80,6 @@ class VerificacaoCodigoPage extends StatelessWidget {
               ),
               const SizedBox(height: 24),
 
-              // 5. Reenviar código
               GestureDetector(
                 onTap: () {},
                 child: const Text(
@@ -101,7 +97,10 @@ class VerificacaoCodigoPage extends StatelessWidget {
               CustomButton(
                     text: 'Continuar',
                     onPressed: () {
-                    print('');
+                    Navigator.push(
+                      context,
+                        MaterialPageRoute(builder: (context) => const PermissaoLocalizacaoPage())
+                      );
                 },
               ),
               
