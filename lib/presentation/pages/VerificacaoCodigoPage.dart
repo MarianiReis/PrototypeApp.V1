@@ -25,8 +25,6 @@ class VerificacaoCodigoPage extends StatelessWidget {
                   CircleAvatar(radius: 5, backgroundColor: Colors.grey[300]),
                   Expanded(child: Container(height: 2, color: Colors.grey[300])),
                   CircleAvatar(radius: 5, backgroundColor: Colors.grey[300]),
-                  Expanded(child: Container(height: 2, color: Colors.grey[300])),
-                  CircleAvatar(radius: 5, backgroundColor: Colors.grey[300]),
                 ],
               ),
               const SizedBox(height: 48),

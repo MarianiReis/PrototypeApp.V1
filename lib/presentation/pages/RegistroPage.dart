@@ -32,8 +32,6 @@ class RegistroPage extends StatelessWidget {
                           CircleAvatar(radius: 6, backgroundColor: Colors.grey[300]),
                           const Expanded(child: Divider(color: Colors.grey, thickness: 1)),
                           CircleAvatar(radius: 6, backgroundColor: Colors.grey[300]),
-                          const Expanded(child: Divider(color: Colors.grey, thickness: 1)),
-                          CircleAvatar(radius: 6, backgroundColor: Colors.grey[300]),
                         ],
                       ),
                       const SizedBox(height: 32),
